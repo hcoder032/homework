@@ -87,14 +87,8 @@
         <h1>Danh sách Bài tập</h1>
         <div class="folder" onclick="toggleSubfolders()">Thư mục lớn</div>
         <div class="subfolders" id="subfolders">
-            <div class="subfolder-grid">
-                <!-- Các bài tập từ 1 đến 29 -->
-                <?php for ($i = 1; $i <= 29; $i++): ?>
-                    <div class="subfolder-item">
-                        <a href="bai_con/bai<?php echo $i; ?>.php">Bài <?php echo $i; ?></a>
-                    </div>
-                    
-                <?php endfor; ?>
+            <div class="subfolder-grid" id="subfolder-grid">
+                <!-- Các bài tập sẽ được tải từ file PHP -->
             </div>
         </div>
     </div>
@@ -104,8 +98,20 @@
             const subfolders = document.getElementById('subfolders');
             subfolders.style.display = subfolders.style.display === 'none' || subfolders.style.display === '' ? 'block' : 'none';
         }
+
+        // Tải dữ liệu từ file PHP
+        fetch('get_bai_tap.php')
+            .then(response => response.json())
+            .then(data => {
+                const grid = document.getElementById('subfolder-grid');
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'subfolder-item';
+                    div.innerHTML = `<a href="bai_con/${item}">Bài ${item.split('bai')[1].split('.')[0]}</a>`;
+                    grid.appendChild(div);
+                });
+            })
+            .catch(error => console.error('Error:', error));
     </script>
 </body>
 </html>
-
-
