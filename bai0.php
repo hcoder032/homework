@@ -91,8 +91,9 @@
                 <!-- Các bài tập từ 1 đến 29 -->
                 <?php for ($i = 1; $i <= 29; $i++): ?>
                     <div class="subfolder-item">
-                        <a href="bai<?php echo $i; ?>.php">Bài <?php echo $i; ?></a>
+                        <a href="bai_con/bai<?php echo $i; ?>.php">Bài <?php echo $i; ?></a>
                     </div>
+                    
                 <?php endfor; ?>
             </div>
         </div>
